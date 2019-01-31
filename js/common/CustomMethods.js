@@ -50,10 +50,14 @@ this.system = this.system || {};
         text.cache(cacheX, cacheY, cacheWidth, cacheHeight);
     };
 
-    CustomMethods.makeImage = function (id , clickable) {
+    CustomMethods.makeImage = function (id , clickable, centerImage) {
         const img = new createjs.Bitmap(queue.getResult(id));
         img.mouseEnabled = clickable;
         img.tickEnabled = false;
+        if(centerImage === true){
+            img.regX = img.image.width/2;
+            img.regY = img.image.height/2;
+        }
         return img;
     };
 

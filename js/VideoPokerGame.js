@@ -20,6 +20,7 @@ this.system = this.system || {};
     p._infoPanel = null;
     p._soundInfoComponent = null;
     p._logo = null;
+    p._messagesComponent = null;
 
     p._init = function () {
         this._registerSounds();
@@ -62,6 +63,12 @@ this.system = this.system || {};
         this.addChild(gamble);
 
         this.addChild(playerCards);
+
+        const messagesComponent = this._messagesComponent = new system.MessagesComponent();
+        messagesComponent.x = 960;
+        messagesComponent.y = 540;
+        messagesComponent.scale = 0;
+        this.addChild(messagesComponent);
 
         this._infoPanel = system.CustomMethods.makeImage('infoPanel', false);
         this._infoPanel.visible = false;
@@ -153,13 +160,19 @@ this.system = this.system || {};
     };
 
     p._draw = function() {
-        this._state = 'change';
-        this._playerCardsComponent.resetCards();
         this._controlboardComponent.enableBetButton(false);
         this._controlboardComponent.enableDrawChangeCollectButton(false);
         this._enableKeyboard(false);
 
         const response = this._communicator.getFirstDrawCards();
+        if(response.message){
+            this._onGameOver(response.message);
+            return;
+        }
+
+        this._playerCardsComponent.resetCards();
+        this._state = 'change';
+
         const cards = response.cards;
         const winType = response.winType;
         const balance = response.balance;
@@ -183,6 +196,15 @@ this.system = this.system || {};
 
             this._enableKeyboard(true);
         },500);
+    };
+
+    p._onGameOver = function(message) {
+        console.log('game over');
+        createjs.Tween.get(this._messagesComponent).to({scale:1}, 500, createjs.Ease.cubicIn).wait(1000).to({scale:0}, 500, createjs.Ease.cubicIn).call(()=>{
+            this._controlboardComponent.enableBetButton(true);
+            this._controlboardComponent.enableDrawChangeCollectButton(true);
+            this._enableKeyboard(true);
+        });
     };
 
     p._change = function() {

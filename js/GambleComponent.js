@@ -59,9 +59,7 @@ this.system = this.system || {};
         right.y = left.y;
         right.visible = false;
 
-        const rightOverlay = this._rightCardOverlay = system.CustomMethods.makeImage('gambleCard', false);
-        rightOverlay.regX = rightOverlay.image.width/2;
-        rightOverlay.regY = rightOverlay.image.height/2;
+        const rightOverlay = this._rightCardOverlay = system.CustomMethods.makeImage('gambleCard', false, true);
         rightOverlay.x = right.x;
         rightOverlay.y = right.y;
 
@@ -101,9 +99,7 @@ this.system = this.system || {};
         });
         this.addChild(low);
 
-        const overlay = this._buttonsOverlay = system.CustomMethods.makeImage('gambleButtonsOverlay', false);
-        overlay.regX = overlay.image.width/2;
-        overlay.regY = overlay.image.height/2;
+        const overlay = this._buttonsOverlay = system.CustomMethods.makeImage('gambleButtonsOverlay', false, true);
         overlay.x = high.x;
         overlay.y = high.y;
         this.addChild(overlay);

@@ -40,9 +40,7 @@ this.system = this.system || {};
         betTextLabel.y = 30;
         system.CustomMethods.cacheText(betTextLabel);
 
-        const betMarker = this._betMarker = system.CustomMethods.makeImage('betMarker', false);
-        betMarker.regX = betMarker.image.width/2;
-        betMarker.regY = betMarker.image.height/2;
+        const betMarker = this._betMarker = system.CustomMethods.makeImage('betMarker', false, true);
         betMarker.x = 244;
         betMarker.y = 100;
         this.addChild(betMarker);
@@ -128,7 +126,6 @@ this.system = this.system || {};
     };
 
     p.onDrawChangeCollect = function() {
-        //system.CustomMethods.playSound('drawChangeCollectButtonSound');
         system.SoundManager.play('drawChangeCollectButtonSound');
         this._game.onDrawChangeCollect();
         this.updateDrawChangeCollectButtonText();

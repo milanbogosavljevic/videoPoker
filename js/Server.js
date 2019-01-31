@@ -27,7 +27,7 @@ this.system = this.system || {};
         this._gambleCards = [];
         this._gambleCardsPassed = [];
         this._betLevels = [1, 5, 20, 50, 100];
-        this._balance = 1000;
+        this._balance = 10;
         this._currentBet = this._betLevels[0];
         this._winType = 'noWin';
         this._baseWin = 0.00;
@@ -60,6 +60,10 @@ this.system = this.system || {};
 
     p.dealFirstDrawCards = function() {
         this._playerCards = [];
+        if(this._balance < this._currentBet){
+            // RESPONSE
+            return {message:'Not enough money to play'}
+        }
         this._balance -= this._currentBet;
         for(let i = 0; i < 5; i++){
             const numOfCards = this._cards.length - 1;

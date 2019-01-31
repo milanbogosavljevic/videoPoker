@@ -21,9 +21,7 @@ this.system = this.system || {};
         this._image.regY = image.sourceRect.height/2;
         this._image.y = 160;
 
-        this._holdMarker = system.CustomMethods.makeImage('holdMarker', false);
-        this._holdMarker.regX = this._holdMarker.image.width/2;
-        this._holdMarker.regY = this._holdMarker.image.height/2;
+        this._holdMarker = system.CustomMethods.makeImage('holdMarker', false, true);
         this._holdMarker.y = 152;
         this._holdMarker.visible = false;
 
