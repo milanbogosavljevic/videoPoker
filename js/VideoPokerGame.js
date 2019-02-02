@@ -200,7 +200,8 @@ this.system = this.system || {};
 
     p._onGameOver = function(message) {
         console.log('game over');
-        createjs.Tween.get(this._messagesComponent).to({scale:1}, 500, createjs.Ease.cubicIn).wait(1000).to({scale:0}, 500, createjs.Ease.cubicIn).call(()=>{
+        this._messagesComponent.updateMessage(message);
+        createjs.Tween.get(this._messagesComponent).to({scale:1}, 500, createjs.Ease.cubicIn).wait(2000).to({scale:0}, 500, createjs.Ease.cubicIn).call(()=>{
             this._controlboardComponent.enableBetButton(true);
             this._controlboardComponent.enableDrawChangeCollectButton(true);
             this._enableKeyboard(true);
