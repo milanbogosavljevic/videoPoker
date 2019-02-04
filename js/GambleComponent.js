@@ -86,6 +86,7 @@ this.system = this.system || {};
         high.x = 376;
         high.y = 91;
         high.on('click', ()=>{
+            high.doScaleAnimation();
             this.onButton('High');
         });
         this.addChild(high);
@@ -95,6 +96,7 @@ this.system = this.system || {};
         low.x = high.x;
         low.y = 281;
         low.on('click', ()=>{
+            low.doScaleAnimation();
             this.onButton('Low');
         });
         this.addChild(low);
@@ -141,9 +143,7 @@ this.system = this.system || {};
                 this._rightCardOverlay.visible = true;
 
                 let soundId = win === '0.00' ? 'gambleLoseSound' : 'gambleWinSound';
-                //const sound = system.CustomMethods.playSound(soundId);
                 system.SoundManager.play(soundId);
-                //const duration = Math.round(sound.duration);
                 const duration = Math.round(system.SoundManager.getDuration(soundId));
 
                 createjs.Tween.get(this._rightCard).wait(duration).to({x:this._leftCard.x},500).call(()=>{

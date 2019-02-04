@@ -181,7 +181,6 @@ this.system = this.system || {};
 
         setTimeout(()=>{ // todo ovo treba da se izvrsi kada se zavrsi animacija
             if(winType !== 'noWin'){
-                //system.CustomMethods.playSound('hasWinSound');
                 system.SoundManager.play('hasWinSound');
             }
             this._controlboardComponent.enableDrawChangeCollectButton(true);

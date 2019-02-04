@@ -37,7 +37,6 @@ this.system = this.system || {};
     };
 
     p.toggleHold = function() {
-        //system.CustomMethods.playSound('selectCardSound');
         system.SoundManager.play('selectCardSound');
         this._hold = !this._hold;
         this._holdMarker.visible = this._hold;

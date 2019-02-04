@@ -14,9 +14,7 @@ this.system = this.system || {};
     SoundManager.play = function(id, volume, loop) {
         const vol = volume || 1;
         const looping = loop || 0;
-        if(SoundManager.sounds[id].playState !== 'playFinished'){
-            SoundManager.sounds[id].stop();
-        }
+        if(SoundManager.sounds[id].playState !== 'playFinished'){SoundManager.sounds[id].stop();}
         SoundManager.sounds[id].play({volume:vol, loop:looping});
     };
 
